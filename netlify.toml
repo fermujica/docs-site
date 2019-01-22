@@ -2,13 +2,11 @@
 base = "netlify/"
 publish = "public/"
 command = """\
-sed -i "s;git@github.com:;https://$GITHUB_TOKEN:x-oauth-basic@github.com/;g" ../staging-antora-playbook.yml && \
 node_modules/.bin/antora --pull --redirect-facility=netlify ../$STAGE-antora-playbook.yml\
 """
 
 [build.environment]
-NODE_VERSION = "8"
-BUILD_ONLY = "true"
+NODE_VERSION = "10"
 ANTORA_CACHE_DIR = "node_modules/.cache/antora"
 STAGE = "staging"
 
@@ -21,7 +19,6 @@ OPTANON_SCRIPT_URL = "https://cdn.cookielaw.org/consent/288c1333-faac-4514-a8bf-
 
 [context.deploy-preview]
 command = """
-sed -i "s;git@github.com:;https://$GITHUB_TOKEN:x-oauth-basic@github.com/;g" ../staging-antora-playbook.yml && \
 node_modules/.bin/antora --url $DEPLOY_PRIME_URL --pull --redirect-facility=netlify ../$STAGE-antora-playbook.yml\
 """
 
